@@ -1,0 +1,8 @@
+
+
+<%=form_tag({:controller=>'login', :action=>'signup'}) do %>
+<%=text_field 'login', 'name' %>
+<%=text_field 'login', 'pass' %>
+<%=text_field :login, :note %>
+<%= submit_tag("SignUp") %>
+<% end %>
