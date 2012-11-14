@@ -1,6 +1,7 @@
 class LoginController < ApplicationController
 
-def new
+def index
+  
   
   
 end
@@ -8,5 +9,5 @@ end
   
   
 
-  
+   
 end
