@@ -1,12 +1,12 @@
 class CreateServices < ActiveRecord::Migration
   def change
     create_table :services do |t|
-      t.reference :service_type
+      t.references :service_type
       t.datetime :completion_date
-      t.reference :owner
-      t.reference :customer
-      t.reference :submitter
-      t.reference :status
+      t.references :owner
+      t.references :customer
+      t.references :submitter
+      t.references :status
       t.string :description
       t.string :name
 

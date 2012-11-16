@@ -1,0 +1,18 @@
+<div><%= params[:notice] %></div>
+<div>All Services</div>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <tr>
+    <th>Description</th>
+  </tr>
+  
+  <% @services.each do |s| %>
+  <tr>
+    <td>s.name</td>
+    <td>s.description</td>
+  </tr>  
+  <% end %>
+</table>
