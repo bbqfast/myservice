@@ -18,7 +18,9 @@ def new
   @customers = Customer.all
   @submitters = Submitter.all
   @owners = Owner.all
+  @service_types = ServiceType.all
   
+  @service_types.unshift(Customer.new(:id => 0, :name => 'choose service type'))
   @customers.unshift(Customer.new(:id => 0, :name => 'choose'))
   @owners.unshift(Owner.new(:id => 0, :name => 'choose'))
   @submitters.unshift(Submitter.new(:id => 0, :name => 'choose'))
@@ -75,15 +77,27 @@ def create
 
   id=find_or_create(Owner, params[:other][:owner])
   params[:service][:owner]=id
+
+  id=find_or_create(Submitter, params[:other][:submitter])
+  params[:service][:submitter]=id
+  
+  #params[:service][:comments]=params[:comment]
   
   @service = Service.new(params[:service])
+      #@service.comments.create(:comment_text => 'my comment')
+  
+  if @service.save
+    @service.comments.create(params[:comment])
+  else
+    error='unable to save service'
+  end
 
   respond_to do |format|
-    if @service.save
-      format.html { redirect_to :controller=>'login', :action=>'list', notice: 'Post was successfully created.' }
+    if !error
+      format.html { redirect_to :controller=>'service', :action=>'list', notice: 'Post was successfully created.' }
       # format.json { render json: @post, status: :created, location: @post }
     else
-      format.html { redirect_to :controller=>'login', :action=>'list', notice: 'Create service Error'}
+      format.html { redirect_to :controller=>'service', :action=>'list', notice: 'Create service Error'}
       # format.json { render json: @post.errors, status: :unprocessable_entity }
     end
   end
@@ -91,13 +105,16 @@ def create
 end
 
 def testdata
-  #@c = Customer.create(:name => 'Philip')
-  #@c = Customer.create(:name => 'Alan')
-  
   create_if_not_exists(Customer, :name, 'philip' )
   create_if_not_exists(Customer, :name, 'alan' )
   #create_if_not_exists(Customer, :name, 'alex', Customer.new(:name => 'alex') )
   create_if_not_exists_generic(Company, [{:name => 'abc'},{:note => 'mynote'}])
+  create_if_not_exists_generic(Company, [{:name => 'Home Depot'},{:note => 'mynote'}])
+  create_if_not_exists_generic(Company, [{:name => 'Quick Lube'},{:note => 'mynote'}])
+  create_if_not_exists_generic(Company, [{:name => 'Generic heater'},{:note => 'mynote'}])
+  create_if_not_exists_generic(ServiceType, [{:name => 'Painting'},{:note => 'mynote'}])
+  create_if_not_exists_generic(ServiceType, [{:name => 'Roofing'},{:note => 'mynote'}])
+  create_if_not_exists_generic(ServiceType, [{:name => 'Disposal'},{:note => 'mynote'}])
   #@c.save
 end
 

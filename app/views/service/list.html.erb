@@ -4,15 +4,13 @@
 <table>
   <tr>
     <th>Name</th>
-  </tr>
-  <tr>
     <th>Description</th>
   </tr>
   
   <% @services.each do |s| %>
   <tr>
-    <td>s.name</td>
-    <td>s.description</td>
+    <td><%=s.name%></td>
+    <td><%=s.description%></td>
   </tr>  
   <% end %>
 </table>

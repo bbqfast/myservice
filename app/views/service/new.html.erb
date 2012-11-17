@@ -38,6 +38,10 @@ $(document).ready(function ()
 
 <%=form_tag({:controller=>'service', :action=>'create'}) do %>
 <div>
+<span><%=label_tag 'service' %></span>
+<span><%=select_tag "service_types", options_from_collection_for_select(@service_types, "id", "name") %></span>
+</div>
+<div>
 <span><%=label_tag 'service name' %></span>
 <span><%=text_field :service, :name %></span>
 <span><%=label_tag display[:name] %></span>
@@ -65,5 +69,11 @@ $(document).ready(function ()
 <span><%=label_tag 'Completion Date' %></span>
 <span><%=date_select("article", "completion_date") %></span>
 </div>
-<%= submit_tag("SignUp") %>
+
+<div>
+<span><%=label_tag 'COMMENT' %></span>
+<span id="textbox_owners"><%=text_area :comment, :comment_text %></span>
+</div>
+
+<%= submit_tag("New") %>
 <% end %>
