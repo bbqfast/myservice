@@ -52,6 +52,16 @@ $(document).ready(function ()
 <span id="select_customers"><%=select_tag "customers", options_from_collection_for_select(@customers, "id", "name") %></span>
 </div>
 <div>
+<span><%=label_tag 'owner' %></span>
+<span id="textbox_owners"><%=text_field :other, :owner %></span>
+<span id="select_owners"><%=select_tag "owners", options_from_collection_for_select(@owners, "id", "name") %></span>
+</div>
+<div>
+<span><%=label_tag 'submitter' %></span>
+<span id="textbox_owners"><%=text_field :other, :submitter %></span>
+<span id="select_owners"><%=select_tag "submitter", options_from_collection_for_select(@submitters, "id", "name") %></span>
+</div>
+<div>
 <span><%=label_tag 'Completion Date' %></span>
 <span><%=date_select("article", "completion_date") %></span>
 </div>

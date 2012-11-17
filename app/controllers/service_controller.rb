@@ -17,8 +17,11 @@ end
 def new
   @customers = Customer.all
   @submitters = Submitter.all
+  @owners = Owner.all
   
   @customers.unshift(Customer.new(:id => 0, :name => 'choose'))
+  @owners.unshift(Owner.new(:id => 0, :name => 'choose'))
+  @submitters.unshift(Submitter.new(:id => 0, :name => 'choose'))
   #@display={}
   #@display[:name]='inv'
   
@@ -60,6 +63,7 @@ def create
     redirect_to :controller=>'service', :action=>'new', notice: 'Invalid entries' 
     return
   end
+
   if (params[:other][:customer] == '')
     @@display[:name]='required'
     redirect_to :controller=>'service', :action=>'new', notice: 'Invalid entries' 
@@ -67,14 +71,12 @@ def create
   end
 
   id=find_or_create(Customer, params[:other][:customer])
-  
   params[:service][:customer]=id
-  x={}
-  x[:name]=params[:service][:name]
-  x[:description]='desc'
-  x[:customer]=params[:service][:customer]
+
+  id=find_or_create(Owner, params[:other][:owner])
+  params[:service][:owner]=id
   
-  @service = Service.new(x)
+  @service = Service.new(params[:service])
 
   respond_to do |format|
     if @service.save
@@ -89,9 +91,36 @@ def create
 end
 
 def testdata
-  @c = Customer.create(:name => 'Philip')
-  @c = Customer.create(:name => 'Alan')
-  @c.save
+  #@c = Customer.create(:name => 'Philip')
+  #@c = Customer.create(:name => 'Alan')
+  
+  create_if_not_exists(Customer, :name, 'philip' )
+  create_if_not_exists(Customer, :name, 'alan' )
+  #create_if_not_exists(Customer, :name, 'alex', Customer.new(:name => 'alex') )
+  create_if_not_exists_generic(Company, [{:name => 'abc'},{:note => 'mynote'}])
+  #@c.save
+end
+
+def create_if_not_exists(cls, symbol, val)
+  if (cls.exists?(symbol => val))
+    return
+  end
+  
+  obj = cls.new(symbol => val)
+  #cust = cls.new(symbol => val)
+  obj.save
+end
+
+def create_if_not_exists_generic(cls, pair_list)
+  if (cls.exists?(pair_list.first))
+    return
+  end
+  
+  pair_list = pair_list.inject(:merge)
+  obj = cls.new(pair_list)
+  #cust = cls.new(symbol => val)
+  obj.save
+  pair_list.first
 end
 
 def list
@@ -102,7 +131,5 @@ def list
     format.json { render json: @services }
   end
 end
-  
-
    
 end #class
