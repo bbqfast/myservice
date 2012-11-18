@@ -1,0 +1,17 @@
+<script type="text/javascript">
+ 
+
+  
+$(document).ready(function ()
+  {
+    combo.addChangeEvent('customers');
+    combo.addChangeEvent('submitters');
+    combo.addChangeEvent('owners');
+  }
+);  
+  
+</script>
+<div><%= params[:notice] %></div>
+<h1><div>Update service</div></h1>
+
+<%= render 'form' %>

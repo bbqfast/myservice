@@ -11,6 +11,7 @@
   <tr>
     <td><%=s.name%></td>
     <td><%=s.description%></td>
+    <td><%=link_to "Update " + s.id.to_s, :controller => 'service', :action => 'update', :id => s.id%></td>
   </tr>  
   <% end %>
 </table>

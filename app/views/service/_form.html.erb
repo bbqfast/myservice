@@ -1,0 +1,40 @@
+<%=form_tag({:controller=>'service', :action=>@form_action, :id => @service.id}) do %>
+<div>
+<span><%=label_tag 'service' %></span>
+<span><%=select_tag :service_type, options_from_collection_for_select(@service_types, "id", "name", @service.service_type_id) %></span>
+</div>
+<div>
+<span><%=label_tag 'service name' %></span>
+<span><%=text_field :service, :name, :value => @service.name  %></span>
+<span><%=label_tag display[:name] %></span>
+</div>
+<div>
+<span><%=label_tag 'customer' %></span>
+<span id="textbox_customers"><%=text_field :other, :customer, :value => @service.customer.name %></span>
+<span id="select_customers"><%=select_tag "customers", options_from_collection_for_select(@customers, "id", "name") %></span>
+</div>
+<div>
+<span><%=label_tag 'owner' %></span>
+<span id="textbox_owners"><%=text_field :other, :owner, :value => @service.owner.name  %></span>
+<span id="select_owners"><%=select_tag "owners", options_from_collection_for_select(@owners, "id", "name") %></span>
+</div>
+<div>
+<span><%=label_tag 'submitter' %></span>
+<span id="textbox_submitters"><%=text_field :other, :submitter, :value => @service.submitter.name  %></span>
+<span id="select_submitters"><%=select_tag "submitters", options_from_collection_for_select(@submitters, "id", "name") %></span>
+</div>
+<div>
+<span><%=label_tag 'Completion Date' %></span>
+<span><%=date_select("article", "completion_date", :value => @service.completion_date) %></span>
+</div>
+<div>
+<span><%=label_tag 'description' %></span>
+<span><%=text_field :service, :description, :value => @service.description %></span>
+</div>
+<div>
+<span><%=label_tag 'COMMENT' %></span>
+<span id="textbox_owners"><%=text_area :comment, :comment_text %></span>
+</div>
+
+<%= submit_tag(@submit_tag) %>
+<% end %>

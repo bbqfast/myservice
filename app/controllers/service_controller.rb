@@ -15,6 +15,54 @@ def testfind
 end
 
 def new
+  list_items
+  @form_action = 'create'
+  @service = Service.new
+  @service.customer = Customer.new
+  @service.owner = Owner.new
+  @service.submitter = Submitter.new
+  @submit_tag = 'Create new service'
+  
+  respond_to do |format|
+    format.html # index.html.erb
+    #format.json { render json: @posts }
+  end  
+end
+
+def update
+  list_items
+  @form_action = 'change'
+  @submit_tag = 'Update service'
+  @service = Service.find(params[:id])
+  respond_to do |format|
+    format.html # index.html.erb
+    #format.json { render json: @posts }
+  end  
+end
+
+def change
+  @service = Service.find(params[:id])
+  
+  update_service_users
+  
+  if(!@service.update_attributes(params[:service]))
+    error = 'update failed'
+  end
+  
+  respond_to do |format|
+    if !error
+      format.html { redirect_to :controller=>'service', :action=>'list', notice: 'Post was successfully created.' }
+      # format.json { render json: @post, status: :created, location: @post }
+    else
+      format.html { redirect_to :controller=>'service', :action=>'list', notice: error}
+      # format.json { render json: @post.errors, status: :unprocessable_entity }
+    end
+  end #do  
+end
+
+
+
+def list_items # populate drop downs
   @customers = Customer.all
   @submitters = Submitter.all
   @owners = Owner.all
@@ -24,14 +72,10 @@ def new
   @customers.unshift(Customer.new(:id => 0, :name => 'choose'))
   @owners.unshift(Owner.new(:id => 0, :name => 'choose'))
   @submitters.unshift(Submitter.new(:id => 0, :name => 'choose'))
-  #@display={}
-  #@display[:name]='inv'
   
-  respond_to do |format|
-    format.html # index.html.erb
-    #format.json { render json: @posts }
-  end  
 end
+
+
 
 def checkempty(entry, label)
   if (entry == '')
@@ -72,16 +116,10 @@ def create
     return
   end
 
-  id=find_or_create(Customer, params[:other][:customer])
-  params[:service][:customer]=id
-
-  id=find_or_create(Owner, params[:other][:owner])
-  params[:service][:owner]=id
-
-  id=find_or_create(Submitter, params[:other][:submitter])
-  params[:service][:submitter]=id
-  
+  update_service_users
   #params[:service][:comments]=params[:comment]
+  
+  
   
   @service = Service.new(params[:service])
       #@service.comments.create(:comment_text => 'my comment')
@@ -102,6 +140,19 @@ def create
     end
   end
   
+end
+
+def update_service_users
+  params[:service][:service_type_id]=params[:service_type].to_i
+  
+  id=find_or_create(Customer, params[:other][:customer])
+  params[:service][:customer]=id
+
+  id=find_or_create(Owner, params[:other][:owner])
+  params[:service][:owner]=id
+
+  id=find_or_create(Submitter, params[:other][:submitter])
+  params[:service][:submitter]=id
 end
 
 def testdata

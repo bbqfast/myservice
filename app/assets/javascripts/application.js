@@ -13,3 +13,30 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+// textbox + select list utility
+var combo = 
+{
+  getSelectId: function(fieldname)
+  {
+    // JQ sample from web
+    //$('#yourdropdownid').find('option:selected').text();
+    return '#select_' + fieldname + ' > select ';
+  },
+
+  gettextboxId: function(fieldname)
+  {
+    return '#textbox_' + fieldname + ' > input';
+  },
+  
+  addChangeEvent: function(fieldname)
+  {
+    $(combo.getSelectId(fieldname)).change(function()
+      {
+        var selectVal = $(combo.getSelectId(fieldname)).find('option:selected').text();
+        $(combo.gettextboxId(fieldname)).val(selectVal);
+      }
+    );    
+  }
+}
