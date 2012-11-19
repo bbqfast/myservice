@@ -31,6 +31,14 @@
 <span><%=label_tag 'description' %></span>
 <span><%=text_field :service, :description, :value => @service.description %></span>
 </div>
+<% if !@comments.nil? %>
+  <% @comments.each do |c| %>
+  <div>
+    <%= c.created_at.strftime(" %B %d %I:%M%p") %>
+    Comment: <%= c.comment_text %>
+  </div>
+  <%end%>
+<%end%>
 <div>
 <span><%=label_tag 'COMMENT' %></span>
 <span id="textbox_owners"><%=text_area :comment, :comment_text %></span>

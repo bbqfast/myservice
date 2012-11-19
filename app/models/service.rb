@@ -8,4 +8,10 @@ class Service < ActiveRecord::Base
   belongs_to :submitter
   belongs_to :service_type
   has_many :comments
+  
+  after_create :create_forum
+  def create_forum
+    #Forum.create(:upload_id => self.id, :title => self.name...)
+  end  
+  
 end

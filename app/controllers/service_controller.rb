@@ -15,7 +15,7 @@ def testfind
 end
 
 def new
-  list_items
+  fill_dropdown
   @form_action = 'create'
   @service = Service.new
   @service.customer = Customer.new
@@ -25,18 +25,19 @@ def new
   
   respond_to do |format|
     format.html # index.html.erb
-    #format.json { render json: @posts }
+    #format.json { render json: @services }
   end  
 end
 
 def update
-  list_items
+  fill_dropdown
   @form_action = 'change'
   @submit_tag = 'Update service'
   @service = Service.find(params[:id])
+  @comments = Comment.find(:all, :conditions => [ "service_id = ?", params[:id] ])
+
   respond_to do |format|
     format.html # index.html.erb
-    #format.json { render json: @posts }
   end  
 end
 
@@ -47,22 +48,30 @@ def change
   
   if(!@service.update_attributes(params[:service]))
     error = 'update failed'
+  else
+    @service.comments.create(params[:comment]) # add comments
   end
+ 
   
   respond_to do |format|
     if !error
-      format.html { redirect_to :controller=>'service', :action=>'list', notice: 'Post was successfully created.' }
-      # format.json { render json: @post, status: :created, location: @post }
+      format.html { redirect_to :controller=>'service', :action=>'list', notice: 'Service was updated created.' }
+      format.json { render json: @service, status: :created, location: @service }
     else
       format.html { redirect_to :controller=>'service', :action=>'list', notice: error}
-      # format.json { render json: @post.errors, status: :unprocessable_entity }
+      format.json { render json: @service.errors, status: :unprocessable_entity }
     end
   end #do  
 end
 
+def delete
+  @service = Service.find(params[:id])
+  @service.destroy
+  redirect_to :controller=>'service', :action=>'list', notice: params[:id].to_s + ' Deleted'
+end
 
 
-def list_items # populate drop downs
+def fill_dropdown # populate drop downs
   @customers = Customer.all
   @submitters = Submitter.all
   @owners = Owner.all
@@ -132,11 +141,11 @@ def create
 
   respond_to do |format|
     if !error
-      format.html { redirect_to :controller=>'service', :action=>'list', notice: 'Post was successfully created.' }
-      # format.json { render json: @post, status: :created, location: @post }
+      format.html { redirect_to :controller=>'service', :action=>'list', notice: 'Service was successfully created.' }
+      # format.json { render json: @service, status: :created, location: @service }
     else
       format.html { redirect_to :controller=>'service', :action=>'list', notice: 'Create service Error'}
-      # format.json { render json: @post.errors, status: :unprocessable_entity }
+      # format.json { render json: @service.errors, status: :unprocessable_entity }
     end
   end
   
@@ -158,14 +167,20 @@ end
 def testdata
   create_if_not_exists(Customer, :name, 'philip' )
   create_if_not_exists(Customer, :name, 'alan' )
+  create_if_not_exists(Owner, :name, 'jonathan' )
+  create_if_not_exists(Owner, :name, 'andrew' )
+  create_if_not_exists(Submitter, :name, 'Maryann' )
+  create_if_not_exists(Submitter, :name, 'Katrina' )
+
   #create_if_not_exists(Customer, :name, 'alex', Customer.new(:name => 'alex') )
-  create_if_not_exists_generic(Company, [{:name => 'abc'},{:note => 'mynote'}])
+  create_if_not_exists_generic(Company, [{:name => 'Self-employed'},{:note => 'mynote'}])
   create_if_not_exists_generic(Company, [{:name => 'Home Depot'},{:note => 'mynote'}])
   create_if_not_exists_generic(Company, [{:name => 'Quick Lube'},{:note => 'mynote'}])
   create_if_not_exists_generic(Company, [{:name => 'Generic heater'},{:note => 'mynote'}])
   create_if_not_exists_generic(ServiceType, [{:name => 'Painting'},{:note => 'mynote'}])
   create_if_not_exists_generic(ServiceType, [{:name => 'Roofing'},{:note => 'mynote'}])
   create_if_not_exists_generic(ServiceType, [{:name => 'Disposal'},{:note => 'mynote'}])
+  create_if_not_exists_generic(ServiceType, [{:name => 'Computer help'},{:note => 'mynote'}])
   #@c.save
 end
 
@@ -193,6 +208,9 @@ end
 
 def list
   @services = Service.all
+
+  # mail test
+  #Gmail.email('bbqnow@gmail.com').deliver
 
   respond_to do |format|
     format.html # index.html.erb

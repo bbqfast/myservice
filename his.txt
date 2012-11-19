@@ -1,0 +1,291 @@
+    1  ruby
+    2  rails
+    3  rake
+    4  ls
+    5  cd myblog/
+    6  ls
+    7  gvim &
+    8  rails s
+    9  rails
+   10  ruby
+   11  mysql
+   12  sudo apt-get update
+   13  sudo apt-get install ruby1.9.2-full build-essential git-core
+   14  tar -zxvf rubygems-1.8.15.tgz
+   15  wget http://production.cf.rubygems.org/rubygems/rubygems-1.8.15.tgz
+   16  tar -zxvf rubygems-1.8.15.tgz
+   17  cd rubygems-1.8.15/
+   18  sudo ruby setup.rb
+   19  sudo gem update --system
+   20  sudo gem install rubygems-update
+   21  sudo update_rubygems
+   22  sudo gem install rails
+   23  sudo gem install sqlite3
+   24  sudo apt-get install nodejs
+   25  sudo apt-get install mysql-server mysql-client
+   26  sudo apt-get install libmysql-ruby libmysqlclient-dev
+   27  sudo gem install mysql
+   28  rails
+   29  cd myblog/
+   30  ls
+   31  cat /etc/*-release
+   32  gvim &
+   33  rake
+   34  rails
+   35  ls
+   36  rake
+   37  ruby --h
+   38  ruby --he
+   39  ruby --help
+   40  sqllite3
+   41  sqlite3
+   42  ls
+   43  cd myblog/db
+   44  ls
+   45  sqlite3
+   46  sqlite3 test.sqlite3 
+   47  ls
+   48  cd ..
+   49  ls
+   50  cd config/
+   51  ls
+   52  gvim database.yml &
+   53  cd .
+   54  cd ..
+   55  rake db:create
+   56  rake
+   57  rails
+   58  sudo update_rubygems
+   59  bundle show builder
+   60  bundle exec rake db:create
+   61  bundle install
+   62  bundle show builder
+   63  rake db:create
+   64  rails s
+   65  cls
+   66  rails s
+   67  cd public/
+   68  ls
+   69  del index.html 
+   70  rm index.html 
+   71  cd ..
+   72  rails s
+   73  cd myblog/
+   74  ls
+   75  cd config/
+   76  ls
+   77  gvim routes.rb &
+   78  gvim &
+   79  cd typ
+   80  cd typo
+   81  ls
+   82  cd typo
+   83  cd myblog/
+   84  ls
+   85  cd app
+   86  gvim &
+   87  free -m
+   88  cd ..
+   89  rails generate scaffold
+   90  rails generate scaffold | more
+   91  free -m
+   92  cd myblog/
+   93  rails s
+   94  cd ..
+   95  cd Komodo-Edit-7.1.2-10678-linux-x86/o
+   96  cd Komodo-Edit-7.1.2-10678-linux-x86/
+   97  ls
+   98  sudo ./install.sh 
+   99  ln -s "/home/dev/Komodo-Edit-7/bin/komodo" /usr/local/bin/komodo
+  100  sudo ln -s "/home/dev/Komodo-Edit-7/bin/komodo" /usr/local/bin/komodo
+  101  komodo &
+  102  cd myblog/
+  103  rails generate model Login name:string pass:string active:bool
+  104  free -m
+  105  ls
+  106  gvim test.rb &
+  107  ruby test.rb 
+  108  rails s
+  109  ls
+  110  gvim ee
+  111  chmod +x ee
+  112  ./ee 
+  113  mysql
+  114  mysql -u root
+  115  mysql -u root -p root
+  116  mysql -u root 
+  117  mysql -u root -p
+  118  mysql -u root 
+  119  mysql -u root -p faygay77
+  120  mysql -u dev
+  121  mysql -u root
+  122  mysql --help
+  123  mysql -u root -p
+  124  mysql -u root 
+  125  mysql -u root -p
+  126  mysqladmin -u root -p'root' password
+  127  mysqladmin -u root -p'root' password ''
+  128  mysql -u root 
+  129  cd ..
+  130  ls
+  131  rails myservice -d mysql
+  132  rails new myservice -d mysql
+  133  cd myservice/
+  134  ls
+  135  rails generate model service_type name:string note:string
+  136  rails generate model company name:string note:string
+  137  rails generate model owner name:string
+  138  rails generate model customer name:string
+  139  rails generate model submitter name:string
+  140  rails generate model service service_type:reference completion_date:datetime owner:reference customer:reference submitter:reference status:reference description:string name:string
+  141  ls
+  142  cd ..
+  143  ls
+  144  del myservice.komodoproject 
+  145  rm myservice.komodoproject 
+  146  cd myservice/
+  147  cat /etc/*-release
+  148  git remote add origin https://github.com/bbqfast/myservice.git
+  149  gvim .gitignore &
+  150  git config --global user.email bbqnow@hotmail.com
+  151  git config --global user.name bbqnow@hotmail.com
+  152  git init
+  153  git add .
+  154  ssh -T -p 443 git@ssh.github.com
+  155  git commit -m "first commit"
+  156  git remote add origin git@github.com:bbqfast/myservice.git
+  157  publickey
+  158  cd ~/.ssh/
+  159  ls
+  160  ssh-keygen -t rsa -C "bbqnow@hotmail.com"
+  161  gvim id_rsa.pub 
+  162  cd ../myblog/
+  163  cd config/
+  164  ls
+  165  cd ../..
+  166  cd myservice/
+  167  git checkout .
+  168  git checkout . *
+  169  git checkout .
+  170  git commit .
+  171* git diff 
+  172  git checkout master
+  173  git checkout master .
+  174  git submit master .
+  175  git commit master .
+  176  git commit .
+  177  git commit . --recursive
+  178  git commit . --all
+  179  git commit --all
+  180  git commit -a
+  181  git commit -a .
+  182  git show
+  183  git comit
+  184  git commit
+  185  git commit --all
+  186  git commit -a
+  187  git checkout master
+  188  git commit *
+  189  git show
+  190  git commit -a
+  191  git gui
+  192  cd app
+  193  git add .
+  194  git commit -a
+  195  git ls-files
+  196  git commit -a
+  197  git show
+  198  git commit -a -m "xxx"
+  199  cd controllers/
+  200  git commit
+  201  git commit -m "xx"
+  202  git add -u
+  203  git commit
+  204  git commit -a
+  205  git add -u .
+  206  git commit -a
+  207  git add -u *
+  208  git commit -a
+  209  git add *
+  210  git commit -a
+  211  git show
+  212  git diff
+  213  git diff .
+  214  git diff *
+  215  ls
+  216  git diff service_controller.rb
+  217  git history
+  218  git log service_controller.rb
+  219  git add service_controller.rb
+  220  git commit
+  221  git add *
+  222  git commit
+  223  git push original master
+  224* git push 
+  225  git push origin master
+  226  cd ../..
+  227  cd config/
+  228  git add .
+  229  git commit
+  230  git push origin master
+  231  cd ..
+  232  cd app/
+  233  history
+  234  git add .
+  235  git commit
+  236  git add .
+  237  git commit
+  238  git push origin master
+  239  cd ..
+  240  rails generate model comment comment_text:text service:reference 
+  241  rails generate model service service_type:reference completion_date:datetime owner:reference customer:reference submitter:reference status:reference description:text name:string
+  242  rake db:migrate
+  243  git add .
+  244  git commit
+  245  git push origin master
+  246  git add .
+  247  git commit
+  248  git push origin master
+  249  git pull upstream master
+  250  git pull  master
+  251  git pull origin master
+  252  heroku create
+  253  cd ..
+  254  git clone git://github.com/heroku/ruby-sample.git
+  255  cd ruby-sample/
+  256  heroku create
+  257  cd ..
+  258  wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+  259  heroku login
+  260  cd myservice/
+  261  heroku create
+  262  git push heroku master
+  263  heroku ps:scale web=1
+  264  heroku ps
+  265  heroku open
+  266  heroku logs
+  267  git push heroku master
+  268  heroku open
+  269  heroku logs
+  270  git push heroku master
+  271  heroku open
+  272  heroku run rake db:create
+  273  git push heroku master
+  274  heroku run rake db:create
+  275  heroku run bundle install
+  276  heroku run rake db:create
+  277  heroku run cat Gemfile
+  278  gvim Gemfile 
+  279  git add .
+  280  git push heroku master
+  281  git commit .
+  282  git push origin master
+  283  git push heroku master
+  284  heroku run cat Gemfile
+  285  heroku run rake db:create
+  286  heroku run rake db:migrate
+  287  history | more
+  288  heroku open
+  289  history | gvim &
+  290  history >  gvim &
+  291  history > his.txt

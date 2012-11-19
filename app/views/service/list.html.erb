@@ -3,15 +3,20 @@
 
 <table>
   <tr>
+    <th>Service Id</th>
+    <th>Service type</th>
     <th>Name</th>
     <th>Description</th>
   </tr>
   
   <% @services.each do |s| %>
   <tr>
+    <td><%=s.id.to_s%></td>
+    <td><%= !s.service_type || s.service_type.name   %></td>
     <td><%=s.name%></td>
     <td><%=s.description%></td>
-    <td><%=link_to "Update " + s.id.to_s, :controller => 'service', :action => 'update', :id => s.id%></td>
+    <td><%=link_to "Update" , :controller => 'service', :action => 'update', :id => s.id%></td>
+    <td><%=link_to "Delete" , :controller => 'service', :action => 'delete', :id => s.id%></td>
   </tr>  
   <% end %>
 </table>
