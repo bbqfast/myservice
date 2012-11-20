@@ -13,3 +13,6 @@ ActionMailer::Base.smtp_settings = {
   :password  => "",
   :authentication  => :login
 }
+
+Date::DATE_FORMATS.merge!(:default => "%m/%d/%Y")
+Date::DATE_FORMATS[:default] = '%m/%d/%Y' 

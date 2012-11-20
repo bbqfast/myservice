@@ -45,7 +45,7 @@ def change
   @service = Service.find(params[:id])
   
   update_service_users
-  
+
   if(!@service.update_attributes(params[:service]))
     error = 'update failed'
   else
@@ -128,8 +128,6 @@ def create
   update_service_users
   #params[:service][:comments]=params[:comment]
   
-  
-  
   @service = Service.new(params[:service])
       #@service.comments.create(:comment_text => 'my comment')
   
@@ -162,6 +160,10 @@ def update_service_users
 
   id=find_or_create(Submitter, params[:other][:submitter])
   params[:service][:submitter]=id
+
+  # convert to date before saving
+  #params[:service][:completion_date] = params[:service][:completion_date].to_date
+  params[:service][:completion_date] = DateTime.strptime(params[:service][:completion_date], '%m/%d/%Y')
 end
 
 def testdata
@@ -177,6 +179,7 @@ def testdata
   create_if_not_exists_generic(Company, [{:name => 'Home Depot'},{:note => 'mynote'}])
   create_if_not_exists_generic(Company, [{:name => 'Quick Lube'},{:note => 'mynote'}])
   create_if_not_exists_generic(Company, [{:name => 'Generic heater'},{:note => 'mynote'}])
+  
   create_if_not_exists_generic(ServiceType, [{:name => 'Painting'},{:note => 'mynote'}])
   create_if_not_exists_generic(ServiceType, [{:name => 'Roofing'},{:note => 'mynote'}])
   create_if_not_exists_generic(ServiceType, [{:name => 'Disposal'},{:note => 'mynote'}])

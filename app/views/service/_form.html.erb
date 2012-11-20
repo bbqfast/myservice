@@ -23,9 +23,15 @@
 <span id="textbox_submitters"><%=text_field :other, :submitter, :value => @service.submitter.name  %></span>
 <span id="select_submitters"><%=select_tag "submitters", options_from_collection_for_select(@submitters, "id", "name") %></span>
 </div>
+<% if false %>
 <div>
 <span><%=label_tag 'Completion Date' %></span>
 <span><%=date_select("article", "completion_date", :value => @service.completion_date) %></span>
+</div>
+<%end%>
+<div>
+<span><%=label_tag 'Completion Date' %></span>
+<span><%=text_field(:service, :completion_date, :value => !@service.completion_date || @service.completion_date.strftime("%Y/%m/%d")) %></span>
 </div>
 <div>
 <span><%=label_tag 'description' %></span>
@@ -44,5 +50,5 @@
 <span id="textbox_owners"><%=text_area :comment, :comment_text %></span>
 </div>
 
-<%= submit_tag(@submit_tag) %>
+<%= submit_tag(@submit_tag, :class => 'button_update') %>
 <% end %>

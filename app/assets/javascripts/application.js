@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
+//= require jquery-ui-1.9.1.custom
 
 // textbox + select list utility
 var combo = 
