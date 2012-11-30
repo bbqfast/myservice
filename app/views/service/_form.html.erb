@@ -31,7 +31,7 @@
 <%end%>
 <div>
 <span><%=label_tag 'Completion Date' %></span>
-<span><%=text_field(:service, :completion_date, :value => !@service.completion_date || @service.completion_date.strftime("%m/%d/%Y")) %></span>
+<span><%=text_field(:service, :completion_date, :value => if !@service.completion_date.nil? then @service.completion_date.strftime("%m/%d/%Y") else '' end)%></span>
 </div>
 <div>
 <span><%=label_tag 'description' %></span>

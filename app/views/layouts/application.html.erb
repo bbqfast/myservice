@@ -7,18 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%if !params[:notice].nil?%>
   <div>System message: <%= params[:notice] %></div>
+  <%end%>
   <div>
   userID=<%= if current_user then current_user.id  else 'none' end %>
   login=<%= if current_user then current_user.login  else 'none' end %>
   email=<%= if current_user then current_user.email  else 'none' end %>
-  
   </div>
-<%=session[:user_id]%>
-<%= link_to 'Sign Out', :controller => 'sessions', :action => 'destroy' %>
+  <h3>
 <%= link_to 'HOME', :controller => 'service', :action => 'index'%>
+<%= link_to 'Sign Out', :controller => 'sessions', :action => 'destroy' %>
 <%= link_to 'Login', :controller => 'sessions', :action => 'login'%>
-
+<%= link_to 'Sign up', :controller => 'user', :action => 'new'%>
+  </h3>
 <%= yield %>
 
   
