@@ -10,8 +10,8 @@
   <div>System message: <%= params[:notice] %></div>
   <div>
   userID=<%= if current_user then current_user.id  else 'none' end %>
-  login=<%=current_user.login%>
-  name=<%=current_user.email%>
+  login=<%= if current_user then current_user.login  else 'none' end %>
+  email=<%= if current_user then current_user.email  else 'none' end %>
   
   </div>
 <%=session[:user_id]%>
