@@ -39,5 +39,5 @@ gem 'tlsmail'
 
 group :production do
   # gems specifically for Heroku go here
-  #gem "pg"
+  gem "pg"
 end
