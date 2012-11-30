@@ -26,12 +26,12 @@
 <% if false %>
 <div>
 <span><%=label_tag 'Completion Date' %></span>
-<span><%=date_select("article", "completion_date", :value => @service.completion_date) %></span>
+<span><%=date_select("article", "completion_date", :value => @service.completion_date.strftime('%M-%D-%Y')) %></span>
 </div>
 <%end%>
 <div>
 <span><%=label_tag 'Completion Date' %></span>
-<span><%=text_field(:service, :completion_date, :value => !@service.completion_date || @service.completion_date.strftime("%Y/%m/%d")) %></span>
+<span><%=text_field(:service, :completion_date, :value => !@service.completion_date || @service.completion_date.strftime("%m/%d/%Y")) %></span>
 </div>
 <div>
 <span><%=label_tag 'description' %></span>

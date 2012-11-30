@@ -1,0 +1,7 @@
+<div>
+<%=form_tag ({:controller => 'sessions', :action=>'create'}) do %>
+  <div>Login: <%=text_field :user, :login %></div>
+  <div>password:<%=password_field :user, :password %></div>
+  <%= submit_tag('login in', :class => 'button_update') %>
+<%end%>
+</div>

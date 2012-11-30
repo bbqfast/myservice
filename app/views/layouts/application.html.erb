@@ -7,8 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div>System message: <%= params[:notice] %></div>
+  <div>
+  userID=<%= if current_user then current_user.id  else 'none' end %>
+  login=<%=current_user.login%>
+  name=<%=current_user.email%>
+  
+  </div>
+<%=session[:user_id]%>
+<%= link_to 'Sign Out', :controller => 'sessions', :action => 'destroy' %>
+<%= link_to 'HOME', :controller => 'service', :action => 'index'%>
+<%= link_to 'Login', :controller => 'sessions', :action => 'login'%>
 
 <%= yield %>
 
+  
 </body>
 </html>

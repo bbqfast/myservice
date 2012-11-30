@@ -201,7 +201,8 @@ def create_if_not_exists_generic(cls, pair_list)
   if (cls.exists?(pair_list.first))
     return
   end
-  
+
+  # merge multiple hash into single hash
   pair_list = pair_list.inject(:merge)
   obj = cls.new(pair_list)
   #cust = cls.new(symbol => val)
@@ -213,7 +214,8 @@ def list
   @services = Service.all
 
   # mail test
-  #Gmail.email('bbqnow@gmail.com').deliver
+  #Gmail.new_comment('bbqnow@gmail.com', 'added email functionality').deliver
+  #Gmail.email('chungthov@gmail.com').deliver
 
   respond_to do |format|
     format.html # index.html.erb

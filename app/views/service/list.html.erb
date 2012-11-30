@@ -1,6 +1,7 @@
-<div><%= params[:notice] %></div>
-<div>All Services</div>
+<div><h1>All Services</h1></div>
+<%= link_to 'HOME', :controller => 'service', :action => 'index'%>
 
+<div class="CSSTableGenerator" >
 <table>
   <tr>
     <th>Service Id</th>
@@ -20,3 +21,4 @@
   </tr>  
   <% end %>
 </table>
+</div>
