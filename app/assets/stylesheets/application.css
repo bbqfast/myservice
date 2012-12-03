@@ -34,6 +34,17 @@ table,th, td
 border: 1px solid black;
 }
 
+.top-bar
+{
+    background: #ffcccc;
+}
+
+.inplace-error
+{
+    color: red
+}
+
+
 .CSSTableGenerator {
 
 }

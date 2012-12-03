@@ -1,5 +1,4 @@
 class ServiceController < ApplicationController
-@@display={}
 
 # TEST for find & exists
 def testfind
@@ -14,7 +13,7 @@ def testfind
   end
 end
 
-def new
+def render_new
   fill_dropdown
   @form_action = 'create'
   @service = Service.new
@@ -22,7 +21,11 @@ def new
   @service.owner = Owner.new
   @service.submitter = Submitter.new
   @submit_tag = 'Create new service'
-  
+end
+
+def new
+  render_new
+
   respond_to do |format|
     format.html # index.html.erb
     #format.json { render json: @services }
@@ -55,11 +58,11 @@ def change
   
   respond_to do |format|
     if !error
-      format.html { redirect_to :controller=>'service', :action=>'list', notice: 'Service was updated created.' }
-      format.json { render json: @service, status: :created, location: @service }
+      format.html { redirect_to :controller=>'service', :action=>'list', :notice => 'Service was updated created.' }
+      #format.json { render json: @service, status: :created, location: @service }
     else
-      format.html { redirect_to :controller=>'service', :action=>'list', notice: error}
-      format.json { render json: @service.errors, status: :unprocessable_entity }
+      format.html { redirect_to :controller=>'service', :action=>'list', :notice => error}
+      #format.json { render json: @service.errors, status: :unprocessable_entity }
     end
   end #do  
 end
@@ -67,7 +70,7 @@ end
 def delete
   @service = Service.find(params[:id])
   @service.destroy
-  redirect_to :controller=>'service', :action=>'list', notice: params[:id].to_s + ' Deleted'
+  redirect_to :controller=>'service', :action=>'list', :notice => params[:id].to_s + ' Deleted'
 end
 
 
@@ -84,12 +87,12 @@ def fill_dropdown # populate drop downs
   
 end
 
-
-
 def checkempty(entry, label)
   if (entry == '')
-    @@display[label]='required'
-    redirect_to :controller=>'service', :action=>'new', notice: 'Invalid entries' 
+    @error_text[label]='required'
+    @error_text['name']='required'
+    
+    #redirect_to :controller=>'service', :action=>'new', notice: 'Invalid entries'
     return true
   end  
 end
@@ -109,21 +112,23 @@ def find_or_create(obj, match)
 end
 
 def create
-  #if checkempty(params[:service][:name], :name)
-    #@@display[:name]='required'
-   # return
-  #end
-  if (params[:service][:name] == '')
-    @@display[:name]='required'
-    redirect_to :controller=>'service', :action=>'new', notice: 'Invalid entries' 
-    return
-  end
+  @error_text={}
+  invalid=checkempty(params[:service][:name], 'name')
+  invalid=checkempty(params[:service][:customer], 'customer') | invalid
+  invalid=checkempty(params[:service][:description], 'description') | invalid
+  invalid=checkempty(params[:service][:description], 'submitter') | invalid
+  invalid=checkempty(params[:service][:description], 'owner') | invalid
+  invalid=checkempty(params[:service][:description], 'customer') | invalid
+  invalid=checkempty(params[:service][:description], 'completion_date ') | invalid
 
-  if (params[:other][:customer] == '')
-    @@display[:name]='required'
-    redirect_to :controller=>'service', :action=>'new', notice: 'Invalid entries' 
+
+  if invalid
+    render_new
+    render "new"
+    #redirect_to :controller=>'service', :action=>'new', :notice => 'Invalid entries'
     return
   end
+  
 
   update_service_users
   #params[:service][:comments]=params[:comment]
@@ -139,10 +144,10 @@ def create
 
   respond_to do |format|
     if !error
-      format.html { redirect_to :controller=>'service', :action=>'list', notice: 'Service was successfully created.' }
+      format.html { redirect_to :controller=>'service', :action=>'list', :notice => 'Service was successfully created.' }
       # format.json { render json: @service, status: :created, location: @service }
     else
-      format.html { redirect_to :controller=>'service', :action=>'list', notice: 'Create service Error'}
+      format.html { redirect_to :controller=>'service', :action=>'list', :notice =>'Create service Error'}
       # format.json { render json: @service.errors, status: :unprocessable_entity }
     end
   end
@@ -219,7 +224,7 @@ def list
 
   respond_to do |format|
     format.html # index.html.erb
-    format.json { render json: @services }
+    #format.json { render json: @services }
   end
 end
    

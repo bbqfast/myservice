@@ -15,12 +15,14 @@
   login=<%= if current_user then current_user.login  else 'none' end %>
   email=<%= if current_user then current_user.email  else 'none' end %>
   </div>
+  <div class="  top-bar">
   <h3>
-<%= link_to 'HOME', :controller => 'service', :action => 'index'%>
-<%= link_to 'Sign Out', :controller => 'sessions', :action => 'destroy' %>
-<%= link_to 'Login', :controller => 'sessions', :action => 'login'%>
-<%= link_to 'Sign up', :controller => 'user', :action => 'new'%>
+    <%= link_to 'HOME', :controller => 'service', :action => 'index'%>
+    <%= link_to 'Sign Out', :controller => 'sessions', :action => 'destroy' %>
+    <%= link_to 'Login', :controller => 'sessions', :action => 'login'%>
+    <%= link_to 'Sign up', :controller => 'user', :action => 'new'%>
   </h3>
+    </div>
 <%= yield %>
 
   
