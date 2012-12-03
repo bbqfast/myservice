@@ -6,10 +6,9 @@
 <div>
 <span><%=label_tag 'service name' %></span>
 <span><%=text_field :service, :name, :value => @service.name  %></span>
-<span><%=label_tag display[:name] %></span>
 <%=render :partial => 'error_msg', :locals => {:error_field => 'name'}%>
 </div>
-<div>+
+<div>
 <span><%=label_tag 'customer' %></span>
 <span id="textbox_customers"><%=text_field :other, :customer, :value => @service.customer.name %></span>
 <span id="select_customers"><%=select_tag "customers", options_from_collection_for_select(@customers, "id", "name") %></span>

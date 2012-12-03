@@ -90,10 +90,9 @@ end
 def checkempty(entry, label)
   if (entry == '')
     @error_text[label]='required'
-    @error_text['name']='required'
-    
-    #redirect_to :controller=>'service', :action=>'new', notice: 'Invalid entries'
     return true
+  else
+    return false
   end  
 end
 
@@ -113,17 +112,25 @@ end
 
 def create
   @error_text={}
-  invalid=checkempty(params[:service][:name], 'name')
+  render_new
+  update_service_users
+  @service = Service.new(params[:service])
+
+  #params[:service][:comments]=params[:comment]
+
+  #@service = Service.new(params[:service])
+
+  invalid=false
+  invalid=checkempty(params[:service][:name], 'name') | invalid
   invalid=checkempty(params[:service][:customer], 'customer') | invalid
   invalid=checkempty(params[:service][:description], 'description') | invalid
-  invalid=checkempty(params[:service][:description], 'submitter') | invalid
-  invalid=checkempty(params[:service][:description], 'owner') | invalid
-  invalid=checkempty(params[:service][:description], 'customer') | invalid
-  invalid=checkempty(params[:service][:description], 'completion_date ') | invalid
+  invalid=checkempty(params[:service][:submitter], 'submitter') | invalid
+  invalid=checkempty(params[:service][:owner], 'owner') | invalid
+  invalid=checkempty(params[:service][:customer], 'customer') | invalid
+  invalid=checkempty(params[:service][:completion_date], 'completion_date') | invalid
 
 
   if invalid
-    render_new
     render "new"
     #redirect_to :controller=>'service', :action=>'new', :notice => 'Invalid entries'
     return
@@ -168,7 +175,10 @@ def update_service_users
 
   # convert to date before saving
   #params[:service][:completion_date] = params[:service][:completion_date].to_date
+  begin
   params[:service][:completion_date] = DateTime.strptime(params[:service][:completion_date], '%m/%d/%Y')
+  rescue
+  end
 end
 
 def testdata
