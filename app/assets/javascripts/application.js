@@ -40,3 +40,14 @@ var combo =
     );    
   }
 }
+
+
+$(function() {
+// alert('pre subscribing!');
+  var faye = new Faye.Client('http://localhost:9292/faye');
+  //alert('subscribing!');
+  faye.subscribe('/messages/new', function (data) {
+    // alert(data);
+    document.location.reload();
+  });
+});

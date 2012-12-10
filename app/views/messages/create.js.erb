@@ -1,0 +1,7 @@
+alert('create');
+<% broadcast "/messages/new" do %>
+
+$("#chat").append("<%= escape_javascript render(@message) %>");
+<% return 'test msg' %>
+<% end %>
+$("#new_message")[0].reset();

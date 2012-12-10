@@ -1,0 +1,25 @@
+<script type="text/javascript">
+
+$(document).ready(function ()
+  {
+    alert('x');
+    <% broadcast "/messages/new" do %>
+    $("#chat").append("<%= escape_javascript render(@message) %>");
+    <% end %>
+    $("#new_message")[0].reset();
+  }
+);
+
+</script>
+
+<% title "Chat" %>
+
+<ul id="chat">
+  <%= render @messages %>
+</ul>
+
+<%= form_for Message.new, :remote => true do |f| %>
+  <%= f.text_field :content %>
+  <%= f.submit "create" %>
+<% end %>
+
