@@ -91,7 +91,7 @@ class MessagesController < ApplicationController
   end
 
   def update_clients
-    broadcast2 "/messages/new", "controller msg"
+    #broadcast2 "/messages/new", "controller msg"
   end
 
 end
