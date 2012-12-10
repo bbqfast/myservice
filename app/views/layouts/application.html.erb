@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<%= javascript_include_tag :defaults, "http://localhost:9292/faye.js" %>
 
 
 <html>
@@ -7,6 +6,7 @@
   <title>Myservice</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag :defaults, Myservice::Application.config.faye_url + "/faye.js" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
