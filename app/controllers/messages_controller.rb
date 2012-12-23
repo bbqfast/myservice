@@ -50,9 +50,10 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        update_clients
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render json: @message, status: :created, location: @message }
+        info = update_clients
+        params[:notice] = info
+        format.html { redirect_to @message, :notice => "info:" + info }
+        format.json { render json: @message, status: :created, location: @message, :notice => "info:" + info }
       else
         format.html { render action: "new" }
         format.json { render json: @message.errors, status: :unprocessable_entity }
@@ -82,16 +83,16 @@ class MessagesController < ApplicationController
   def destroy
     @message = Message.find(params[:id])
     @message.destroy
-    update_clients
+    info = update_clients
 
     respond_to do |format|
-      format.html { redirect_to messages_url }
+      format.html { redirect_to messages_url, :notice => info }
       format.json { head :no_content }
     end
   end
 
   def update_clients
-    #broadcast2 "/messages/new", "controller msg"
+    return broadcast3 "/messages/new", "controller msg"
   end
 
 end

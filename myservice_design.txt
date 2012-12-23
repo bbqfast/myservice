@@ -1,0 +1,17 @@
+
+
+User attribute:
+first 
+last
+email
+login
+password
+roleid
+
+
+rails generate model User first:string last:string email:string login:string password_digest:string password_hash:string password_salt:string role:reference
+
+rails generate model Role role_name:string
+
+
+

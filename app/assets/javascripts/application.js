@@ -41,13 +41,18 @@ var combo =
   }
 }
 
+var faye ;
 
-$(function() {
-// alert('pre subscribing!');
-  var faye = new Faye.Client('http://localhost:9292/faye');
-  //alert('subscribing!');
+
+  // var faye = new Faye.Client(fayeurl);
+  faye = new Faye.Client('http://fayeredis.herokuapp.com/faye');
+ 
   faye.subscribe('/messages/new', function (data) {
-    // alert(data);
-    document.location.reload();
+    alert(data);
+    // document.location.reload();
   });
+ alert('subscribed');
+  
+$(function() {
+
 });

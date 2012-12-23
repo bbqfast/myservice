@@ -1,3 +1,4 @@
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
@@ -19,10 +20,23 @@ end
     Net::HTTP.post_form(uri, :message => message.to_json)
   end
 
-  def broadcast2(channel, text)
+  def broadcast1(channel, text)
     message = {:channel => channel, :data => text}
     uri = URI.parse(Myservice::Application.config.faye_url)
     Net::HTTP.post_form(uri, :message => message.to_json)
+  end
+
+  def broadcast2(channel, text)
+    message = {:channel => channel, :data => text, :ext => {:auth_token => "anything"}}
+    uri = URI.parse(Myservice::Application.config.faye_url)
+    Net::HTTP.post_form(uri, :message => message.to_json)
+  end
+
+  def broadcast3(channel, text)
+    message = {:channel => channel, :data => text, :ext => {:auth_token => "anything"}}
+    uri = URI.parse("http://fayeredis.herokuapp.com/faye")
+    x = Net::HTTP.post_form(uri, :message => message.to_json)
+    return x.body
   end
 
   helper_method :current_user  

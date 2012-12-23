@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-
-
+<script type="text/javascript">
+    var fayeurl='<%=Myservice::Application.config.faye_url%>';
+    fayurl="http://fayeredis.herokuapp.com/faye";
+</script>
 <html>
 <head>
   <title>Myservice</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag :defaults, "http://fayeredis.herokuapp.com/faye/faye.js" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag :defaults, Myservice::Application.config.faye_url + "/faye.js" %>
-  <%=Myservice::Application.config.faye_url%>
+<%=Myservice::Application.config.faye_url%>
   <%= csrf_meta_tags %>
 </head>
 <body>

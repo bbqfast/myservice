@@ -36,6 +36,8 @@ Myservice::Application.configure do
   config.assets.debug = true
 
   config.after_initialize do
-  config.faye_url = 'http://localhost:9292/faye'
+  #config.faye_url = 'http://localhost:9292/faye'
+  #config.faye_url = 'http://myfaye.herokuapp.com/faye'
+  config.faye_url = 'http://fayeserverexample.herokuapp.com/faye'
   end
 end

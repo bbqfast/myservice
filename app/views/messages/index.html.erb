@@ -1,4 +1,23 @@
+<script type="text/javascript">
+
+$(document).ready(function ()
+  {
+    $("#dragon").draggable();
+    $("#dragon2").draggable({revert: true});
+  }
+);
+
+</script>
+drags
+<div id="dragon">
 <h1>Listing messages</h1>
+<%=image_tag "duck.jpg", :height => 50%>
+</div>
+
+<div id="dragon2">
+<h1>Listing messages2</h1>
+</div>
+
 =<%=Myservice::Application.config.faye_url%>
 <table>
   <tr>
